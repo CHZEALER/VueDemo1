@@ -6,6 +6,49 @@
     <script type="text/javascript" src="../assets/js/vue.min.js"></script>
 </head>
 <body>
+<!--Vue.set解决这些限制-->
+<!--由于js的限制，Vue不能自动检测以下变动的数组。-->
+<!--当你利用索引直接设置一个项时，Vue不会为我们自动更新。-->
+<!--当你修改数组长度时，Vue不会为我们自动更新。-->
+
+<!--在外部改变数据的三种方法：-->
+<!--1.Vue.set改变-->
+<!--2.用vue对象的方法添加-->
+<!--3.直接操作外部数据-->
+
+  <h1>Vue.set</h1>
+  <hr>
+  <div id="app">
+    {{ count }}
+    <ul>
+      <li v-for="item in arr">{{ item }}</li>
+    </ul>
+  </div>
+  <p><button onclick="add()">ADD</button> </p>
+  <script type="text/javascript">
+    function add() {
+      //1.Vue.set改变
+      //Vue.set(outData,'count',2);
+      //2.用Vue对象的方法添加
+      app.count++;
+      //3.直接操作外部数据
+      // console.log("我已执行");
+      // outData.count++;
+      // app.arr[1]='yyy';
+      Vue.set(app.arr,1,'y');
+    }
+    var outData ={
+      count:1,
+      arr:['yangye','yyy','yege']
+    }
+    var app = new Vue({
+      el:'#app',
+      data:outData
+    })
+
+
+  </script>
+
 
 </body>
 </html>

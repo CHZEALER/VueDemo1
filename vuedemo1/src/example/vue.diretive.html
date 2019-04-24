@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue.directive自定义指令</title>
+    <script type="text/javascript" src="../assets/js/vue.min.js"></script>
+</head>
+<body>
+<h1>Vue.directive</h1>
+<hr>
+<div id="app">
+  <div v-numcolor="color">{{ num }}</div>
+  <p><button @click="add">ADD</button> </p>
+</div>
+<p>
+  <button onclick="unbind()">解绑</button>
+</p>
+
+<script type="text/javascript">
+  function unbind(){
+    //$destroy只是完全销毁一个实例。清理它与其它实例的连接，解绑它的全部指令及事件监听器。
+    app.$destroy();
+  }
+
+  Vue.directive("numcolor",{
+    bind:function (el,binding) {//被绑定
+      console.log('1 - bind');
+      el.style ="color:"+binding.value;
+    },
+    inserted:function () {//绑定到节点
+      console.log(2 - inserted);
+    },
+    update:function () {//组件更新
+      console.log('3 - update');
+    },
+    componentUpdated:function () {//组件更新完成
+      console.log('4 - componentUpdated');
+    },
+    unbind:function () {//解绑
+      console.log('5 - unbind');
+    }
+  })
+  var app = new Vue({
+    el:'#app',
+    data:{
+      num:10,
+      color:"deeppink"
+    },
+    methods:{
+      add:function () {
+        this.num++;
+      }
+    }
+  })
+
+
+</script>
+</body>
+</html>

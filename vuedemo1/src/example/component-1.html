@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>component-1</title>
+  <script type="text/javascript" src="../assets/js/vue.min.js"></script>
+</head>
+
+<!--需要注意的是，构造器里的components 是加s的，而全局注册是不加s的。-->
+
+<body>
+<h1>component-1</h1>
+<hr>
+<div id="app">
+  <yy></yy>
+  <dog></dog>
+  <yydog></yydog>
+
+</div>
+
+<script type="text/javascript">
+  Vue.component('yydog',{
+    template:`<div style="color: deeppink">全局的yydog（杨烨是狗）标签</div>`
+  })
+
+  var app = new Vue({
+    el:'#app',
+    components:{
+      "yy":{
+        template: `<div style="color: yellow">局部的yy（杨烨）标签</div>`
+      },
+      "dog":{
+        template:`<div style="color: deepskyblue">局部的dog（狗）标签</div>`
+      }
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

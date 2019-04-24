@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template</title>
+  <script type="text/javascript" src="../assets/js/vue.min.js"></script>
+</head>
+<body>
+<h1>template</h1>
+<hr>
+<div id="app">
+  {{message}}
+</div>
+
+<!--2.写在template标签里的模板-->
+<template id="tab">
+  <h2 style="color: aqua">写在template标签里的模板</h2>
+</template>
+
+<!--3.写在script标签里的模板，可以让模板从外部文件引入-->
+<script type="text/x-template" id="tab1">
+  <h2 style="color: greenyellow">写在script标签里的模板</h2>
+</script>
+
+<script type="text/javascript">
+  var app = new Vue({
+    el:'#app',
+    data:{
+      message:'hello yy886'
+    },
+    //1.直接写在选项里的模板
+    template:
+    `template<h2 style="color: deeppink">1.直接写在选项里的模板</h2>`,
+    //2.写在template标签里的模板
+    template:"#tab",
+    //3.写在script标签里的模板
+    template:"#tab1"
+  })
+</script>
+
+
+</body>
+</html>

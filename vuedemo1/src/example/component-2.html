@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>component-2</title>
+  <script type="text/javascript" src="../assets/js/vue.min.js"></script>
+</head>
+<body>
+<h1>component-2</h1>
+<hr>
+<div id="app">
+
+<!--  把构造器中的message的值传递给局部组件yege，需要进行绑定-->
+
+  <yege :here="message"></yege>
+
+<!--  <yege from-here="China"></yege>-->
+<!--  在写属性时经常会加入’-‘来进行分词，-->
+<!--  比如：，那这时我们在props里如果写成props:[‘form-here’]是错误的，-->
+<!--  我们必须用小驼峰式写法props:[‘formHere’],组件中的绑定属性也要写成{{ formHere }}。-->
+
+</div>
+<script type="text/javascript">
+  var app = new Vue({
+    el:'#app',
+    data:{
+      message:'jiXian'
+    },
+    components:{
+      "yege":{
+        template:`<div style="color: deeppink">yege from {{here}}</div>`,
+
+      //   props选项就是设置和获取标签上的属性值的，
+      // 例如我们有一个自定义的组件,这时我们想给他加个标签属性写成
+      // 意思就是熊猫来自中国，当然这里的China可以换成任何值。定义属性的选项是props。
+        props:['here']
+      }
+    }
+  })
+</script>
+</body>
+</html>
